@@ -1,28 +1,11 @@
-import { getRepository } from 'typeorm';
-import { cleanData } from './string';
+import {getRepository} from 'typeorm';
+import {cleanData} from './string';
 
-export const generateFilterCondition = async (filter) => {
-  let whereObject = {};
-  if (!filter) {
-    return whereObject;
-  }
-
-  Object.keys(filter).forEach((key) => (filter[key] == null) && delete filter[key]);
-  Object.keys(filter).map(key => {
-    // check for boolean
-    if (typeof filter[key] == 'number' || filter[key] == 'true' || filter[key] == 'false') {
-      whereObject[key] = filter[key];
-    } else {
-      whereObject[key] = filter[key];
-    }
-  });
-  return whereObject;
-};
 
 export async function getPageData(req: any, model: any): Promise<object> {
-  const { sortBy, sort, page, pageSize } = await getGridParams(req);
+  const {sortBy, sort, page, pageSize} = await getGridParams(req);
   const filter = req.query.filter ? req.query.filter : {};
-  const whereObject = await generateFilterCondition(filter);
+  const whereObject = {}
 
   try {
     const total = await getRepository(model).count(whereObject);
@@ -70,7 +53,7 @@ export const getGridParams = async (req) => {
   pageSize = parseInt(pageSize, 10);
   page = parseInt(page, 10);
 
-  return { sort, sortBy, page, pageSize };
+  return {sort, sortBy, page, pageSize};
 };
 
 
