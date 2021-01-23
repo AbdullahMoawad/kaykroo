@@ -45,22 +45,14 @@ const Pagination = (props: any) => {
     const currentUrl = () => {
         let currentQuery = router.query;
 
-
         let merged = {...currentQuery, page: 'x'};
         Object.keys(merged).forEach((key) => (merged[key] == null || merged[key] === '') && delete merged[key]);
 
         let queryString = Object.keys(merged).map(key => {
             return key + '=' + merged[key];
-
-            // if (key === 'sort' || key === 'sortField' || key === 'page' || key === 'pageSize') {
-            //   return key + '=' + merged[key];
-            //
-            // } else {
-            //   return 'filter[' + key + ']' + '=' + merged[key];
-            // }
         }).join('&');
-        return props.baseUrl + '?' + queryString;
 
+        return props.baseUrl + '?' + queryString;
     };
 
     const baseUrl = currentUrl();
@@ -69,19 +61,15 @@ const Pagination = (props: any) => {
         return baseUrl.replace('page=x', `page=${pageNumber}`);
     };
 
-
     let pages = pagination(props.currentPage, Math.ceil(props.total / props.pageSize));
     return (
         <>
-
-
             <nav aria-label='Page navigation'>
                 <ul className='pagination justify-content-end'>
                     <li className='page-item disabled'>
                         <a className='page-link' tabIndex={-1}>Total: {props.total}</a>
                     </li>
                     <li className='page-item disabled'><a className='page-link'>Page Size: {props.pageSize}</a></li>
-
 
                     {pages && pages.map((item) => {
                         return <li key={item}
@@ -90,17 +78,13 @@ const Pagination = (props: any) => {
                                 <Link href={generatePageUrl(item)}>
                                     <a className='page-link'>{item}</a>
                                 </Link>
-
                             }
                         </li>;
                     })
                     }
-
                 </ul>
             </nav>
-
         </>
-
     );
 };
 

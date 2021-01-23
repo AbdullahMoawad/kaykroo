@@ -48,9 +48,7 @@ export default function Home(props) {
       </table>
     </div>
     {result.data && <div className={'col-md-12'}>
-      <Pagination currentPage={result.page} pageSize={10} total={result.total}
-                  baseUrl={'/'} />
-
+      <Pagination currentPage={result.page} pageSize={10} total={result.total} baseUrl={'/'} />
     </div>
     }
   </Layout>;
@@ -59,7 +57,6 @@ export default function Home(props) {
 Home.getInitialProps = async function(router) {
 
   const axiosConfig = getConfig(router);
-  const { id, token } = router.query;
 
   let response = await axiosInstance.get(`/user`, axiosConfig);
 

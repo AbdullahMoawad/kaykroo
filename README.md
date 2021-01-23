@@ -21,6 +21,7 @@
     * expressjs
     * nextjs
     * typeorm
+    * axios
     * formik
     * nodemon
 
