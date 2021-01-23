@@ -33,16 +33,16 @@ export default function Home(props) {
                     <td>{user.username}</td>
                 </tr>
                 <tr>
-                    <th>Email</th>
-                    <td>{user.email}</td>
-                </tr>
-                <tr>
                     <th>firstName</th>
                     <td>{user.firstName}</td>
                 </tr>
                 <tr>
                     <th>lastName</th>
                     <td>{user.lastName}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{user.email}</td>
                 </tr>
             </table>
         </div>

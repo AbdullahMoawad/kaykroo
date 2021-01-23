@@ -26,10 +26,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/create": [
+    "/update/[id]": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/create.js"
+      "static/chunks/pages/update/[id].js"
     ],
     "/view/[id]": [
       "static/chunks/main.js",
