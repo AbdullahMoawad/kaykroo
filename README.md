@@ -1,7 +1,7 @@
 # kaykroo
 
 ### About the application
-    typescript nextjs and mysql User management mono repo app .
+    This is a demo to allow you create list and update user app using RESTful API .
     
 ### How to setup
     * docker-compose up
