@@ -61,8 +61,7 @@
     "slugify": "^1.4.5",
     "tslint": "^6.1.3",
     "turndown": "^7.0.0",
-    "typeorm": "^0.2.30",
-    "typescript-rabbitmq": "0.0.8"
+    "typeorm": "^0.2.30"
   },
   "keywords": [],
   "description": ""

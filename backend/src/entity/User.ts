@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, getRepository, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { getUserSessionRepository, UserSession } from './UserSession';
-import { generateRandomString } from '../util/string';
+import {Column, CreateDateColumn, Entity, getRepository, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import {getUserSessionRepository, UserSession} from './UserSession';
+import {generateRandomString} from '../util/string';
 
 @Entity()
 class User {
@@ -26,15 +26,9 @@ class User {
   @Column()
   isActive: boolean;
 
-  /**
-   * DB insert time.
-   */
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
   public createdAt: Date;
 
-  /**
-   * DB last update time.
-   */
   @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)' })
   public updatedAt: Date;
 
@@ -43,8 +37,7 @@ class User {
     session.userId = this.id;
     session.token = generateRandomString(50);
     session.email = this.email;
-    const savedSession = await getUserSessionRepository().save(session);
-    return savedSession;
+    return await getUserSessionRepository().save(session);
   }
 
   public unsafeFields() {
