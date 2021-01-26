@@ -1,13 +1,13 @@
-import express, { Application, NextFunction, Request, Response } from 'express';
+import express, {Application, NextFunction, Request, Response} from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
-import { allRoutes } from './modules/routes';
-import { HttpError } from './errors';
-import { StatusCodes } from 'http-status-codes';
+import {allRoutes} from './modules/routes';
+import {HttpError} from './errors';
+import {StatusCodes} from 'http-status-codes';
 import cookieParser from 'cookie-parser';
-import { sendHttpErrorModule } from './errors/send-http-error';
-import { createDbConnection } from './server/db';
+import {sendHttpErrorModule} from './errors/send-http-error';
+import {createDbConnection} from './server/db';
 
 async function app() {
   // initialize configuration
@@ -36,14 +36,14 @@ const createApp = async () => {
 
 // support json
   app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
+  app.use(express.urlencoded({extended: false}));
 
 // logs http requests
   app.use(morgan('combined'));
   app.use(cors());
   app.use(sendHttpErrorModule);
 
-  app.get('/', function(req: Request, res: Response) {
+  app.get('/', function (req: Request, res: Response) {
     res.send('App works fine :)');
   });
   app.use('/', allRoutes);
@@ -55,5 +55,5 @@ const createApp = async () => {
   return app;
 };
 
-export { app, createApp };
+export {app, createApp};
 

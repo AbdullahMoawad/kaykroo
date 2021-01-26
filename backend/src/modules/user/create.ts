@@ -1,21 +1,21 @@
-import { body } from 'express-validator';
-import { BaseValidationType } from '../../types/validators';
-import { reqValidationResult } from '../../types/req-validation-result';
-import { ServerError, ValidationError } from '../../util/request';
-import { hashPassword } from '../../util/string';
-import { getUserRepository, User } from '../../entity/User';
+import {body} from 'express-validator';
+import {BaseValidationType} from '../../types/validators';
+import {reqValidationResult} from '../../types/req-validation-result';
+import {ServerError, ValidationError} from '../../util/request';
+import {hashPassword} from '../../util/string';
+import {getUserRepository, User} from '../../entity/User';
 
 const createValidator: BaseValidationType = [
   body('username').notEmpty().isString().toLowerCase().trim().escape(),
   body('firstName').notEmpty().isString().trim().escape(),
-  body('lastName').isString().isLength({ min: 1, max: 25 }).trim().escape(),
+  body('lastName').isString().isLength({min: 1, max: 25}).trim().escape(),
   body('email').notEmpty().isEmail().normalizeEmail(),
   body('password'),
   reqValidationResult
 ];
 
 async function create(req: any, res: any): Promise<void> {
-  const { body } = req;
+  const {body} = req;
   const hashedPassword = hashPassword(body.password);
   const userRow = new User();
   userRow.username = body.username;
@@ -25,13 +25,13 @@ async function create(req: any, res: any): Promise<void> {
   userRow.password = hashedPassword;
   userRow.isActive = true;
 
-  const existUser = await getUserRepository().findOne({ email: body.email });
+  const existUser = await getUserRepository().findOne({email: body.email});
   if (existUser) {
     res.status(400).json(ValidationError('email', 'This is email already registered'));
     return;
   }
 
-  const existUsername = await getUserRepository().findOne({ username: body.username });
+  const existUsername = await getUserRepository().findOne({username: body.username});
   if (existUsername) {
     res.status(400).json(ValidationError('username', 'This is username already exist'));
     return;
@@ -45,4 +45,4 @@ async function create(req: any, res: any): Promise<void> {
   }
 }
 
-export { create, createValidator };
+export {create, createValidator};

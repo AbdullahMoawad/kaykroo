@@ -26,10 +26,10 @@ class User {
   @Column()
   isActive: boolean;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
+  @CreateDateColumn({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)'})
   public createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)' })
+  @UpdateDateColumn({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)'})
   public updatedAt: Date;
 
   public async generateSession() {
@@ -49,4 +49,4 @@ const getUserRepository = () => {
   return getRepository(User);
 };
 
-export { User, getUserRepository };
+export {User, getUserRepository};

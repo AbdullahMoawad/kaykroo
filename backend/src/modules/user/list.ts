@@ -1,8 +1,8 @@
-import { query } from 'express-validator';
-import { User } from '../../entity/User';
-import { getPageData } from '../../util/request';
-import { BaseValidationType } from '../../types/validators';
-import { reqValidationResult } from '../../types/req-validation-result';
+import {query} from 'express-validator';
+import {User} from '../../entity/User';
+import {getPageData} from '../../util/request';
+import {BaseValidationType} from '../../types/validators';
+import {reqValidationResult} from '../../types/req-validation-result';
 
 export const listValidator: BaseValidationType = [
   query('filter[email]')

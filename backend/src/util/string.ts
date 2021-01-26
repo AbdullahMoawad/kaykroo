@@ -26,8 +26,7 @@ export const cleanData = (model, data = []) => {
     return row;
   });
 
-  const response = isSingleRecord ? data[0] : data;
-  return response;
+  return isSingleRecord ? data[0] : data;
 };
 
 export const hashPassword = (password: string) => {

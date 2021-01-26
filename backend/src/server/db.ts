@@ -1,11 +1,10 @@
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
+import {createConnection} from 'typeorm';
 
 let connection;
 
 // create singleton db connection
 const createDbConnection = async () => {
-
   if (connection) {
     return connection;
   }
@@ -13,4 +12,4 @@ const createDbConnection = async () => {
   return connection;
 };
 
-export { createDbConnection };
+export {createDbConnection};
